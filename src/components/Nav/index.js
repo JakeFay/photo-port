@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
 import React, { useEffect } from 'react';
 import { capitalizeFirstLetter } from "../../utils/helpers";
 
-useEffect(() => {
-    document.title = capitalizeFirstLetter(currentCategory.name);
-}, [currentCategory]);
 
 function Nav(props) {
     const {
@@ -12,6 +8,9 @@ function Nav(props) {
         setCurrentCategory,
         currentCategory,
     } = props;
+    useEffect(() => {
+        document.title = capitalizeFirstLetter(currentCategory.name);
+    }, [currentCategory]);
 
     return (
         <header className="flox-row px-1">
@@ -32,9 +31,8 @@ function Nav(props) {
                     </li>
                     {categories.map((category) => (
                         <li
-                            className={`mx-1 ${
-                                currentCategory.name === category.name && 'navActive'
-                                }`} 
+                            className={`mx-1 ${currentCategory.name === category.name && 'navActive'
+                                }`}
                             key={category.name}
                         >
                             <span
